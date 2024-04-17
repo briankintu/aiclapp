@@ -215,3 +215,5 @@ app_license = "MIT"
 # auth_hooks = [
 #	"aicl.auth.validate"
 # ]
+
+website_route_rules = [{'from_route': '/aiclweb/<path:app_path>', 'to_route': 'aiclweb'},]
