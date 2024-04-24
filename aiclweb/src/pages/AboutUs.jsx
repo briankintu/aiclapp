@@ -5,11 +5,32 @@ import Breadcrumb from '../components/Breadcrumb'
 import BannerContact from '../components/sections/BannerContact'
 import { Link } from 'react-router-dom'
 import imgfound from '../assets/images/resource/founderimg.jpg'
+import { useForm } from 'react-hook-form'
+import { useFrappeCreateDoc} from 'frappe-react-sdk'
+
 
 
 
 
 const Kuhusuaicl = () => {
+
+    const { register,  handleSubmit, reset,  formState: { errors } } = useForm()
+
+    const { createDoc, loading, error } = useFrappeCreateDoc()
+
+    const onSubmit =  (data) => {
+        createDoc('Web Appointment Message', data)
+        .then(() => {
+        reset()
+         // Show an alert or notification here
+        alert('Thank you! for making an appointment with us, will call you to confirm');
+       })
+       
+     }
+
+    
+
+
   return (
     <Layout headerStyle={5} footerStyle={5} wrapperCls="home_5">
       <BannerContact />
@@ -74,30 +95,74 @@ const Kuhusuaicl = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <form method="post" action="sendemail.php" className="contact-form">
+                                    <form onSubmit={handleSubmit(onSubmit)}   className="contact-form">
                                         <div className="row">
                                             <div className="col-md-6 form-group">
-                                                <input type="text" name="firstname" placeholder="First Name" required />
+                                            <input type="text" {...register("fullname", {
+                                                required: true,
+                                                minLength: 5
+                                            })}
+                                            aria-invalid={errors.fullname ? "true" : "false"}
+                                                className="form-control"
+                                                placeholder=" Fullname" />
+                                            {errors.fullname?.type === "required"
+                                                && (<p className="form-control" role="alert">Your Fullname is required</p>)} 
                                             </div>
+
+
                                             <div className="col-md-6 form-group">
-                                                <input type="text" name="phone" placeholder="Phone" required />
+                                            <input type="text" {...register("phone", {
+                                                required: true,
+                                                minLength: 5
+                                            })}
+                                            aria-invalid={errors.phone ? "true" : "false"}
+                                                className="form-control"
+                                                placeholder=" Phone" />
+                                            {errors.phone?.type === "required"
+                                                && (<p className="form-control" role="alert">Your Phonenumber is required</p>)}
                                             </div>
-                                            <div className="col-md-6 form-group">
-                                                <input type="text" name="date" placeholder="Date" required />
-                                                <i className="far fa-calendar" />
+
+
+                                            <div className="col-md-6 form-group"> 
+                                            <label>Date:</label>
+                                            <input type="date" {...register("date", {
+                                                required: true,
+                                                
+                                            })} aria-invalid={errors.date ? "true" : "false"}
+                                            className="form-control"
+                                            
+                                            />
+                                             {errors.date?.type === "required"
+                                                && (<p className="form-control" role="alert">Select a date is required</p>)}
+
+                                
                                             </div>
-                                            <div className="col-md-6 form-group">
-                                                <input type="text" name="time" placeholder="Time" required />
-                                                <i className="far fa-clock" />
+
+
+                                            <div className="col-md-6 form-group"> 
+                                                <label>Time:</label>
+                                                <input type="time"  {...register("time", {
+                                                required: true,
+                                                
+                                            
+
+                                                })} aria-invalid={errors.time ? "true" : "false"}
+                                            className="form-control"
+                                            
+
+                                                />
+                                                {errors.time?.type === "required"
+                                                && (<p className="form-control" role="alert">Please select your preffered time</p>)}
+                                                {/* <i className="far fa-clock" /> */}
                                             </div>
                                             <div className="col-md-12 form-group">
-                                                <select className="custom-select" name="subject">
-                                                    <option value="*">Discusss about</option>
-                                                    <option value=".category-1">Business Aproach</option>
-                                                    <option value=".category-2">Trades &amp; Stock Market</option>
-                                                    <option value=".category-3">Strategy &amp; Planning</option>
-                                                    <option value=".category-4">Software &amp; Research</option>
-                                                    <option value=".category-5">Support &amp; Maintenance</option>
+                                            <select className="custom-select" {...register("discuss")} >
+                                                    <option value="" disabled>Discusss about</option>
+                                                    <option value="Business Aproach">Business Aproach</option>
+                                                    <option value="Trades Stock Market">Trades &amp; Stock Market</option>
+                                                    <option value="Strategy Planning">Strategy &amp; Planning</option>
+                                                    <option value="Software Research">Software &amp; Research</option>
+                                                    <option value="Support Maintenance">Support &amp; Maintenance</option>
                                                 </select>
                                             </div>
                                             <div className="col-md-12 form-group">

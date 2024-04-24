@@ -11,12 +11,14 @@
     "copy-html-entry": "cp ../aicl/public/aiclweb/index.html ../aicl/www/aiclweb.html"
   },
   "dependencies": {
+    "antd": "^5.16.4",
     "frappe-react-sdk": "^1.3.10",
     "isotope-layout": "^3.0.6",
     "react": "^18.2.0",
     "react-curved-text": "^3.0.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.3",
+    "react-hook-form-input": "^1.1.10",
     "react-iframe": "^1.8.5",
     "react-router-dom": "^6.21.3",
     "sass": "^1.70.0",
