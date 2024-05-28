@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include aicl *.css
+recursive-include aicl *.csv
+recursive-include aicl *.html
+recursive-include aicl *.ico
+recursive-include aicl *.js
+recursive-include aicl *.json
+recursive-include aicl *.md
+recursive-include aicl *.png
+recursive-include aicl *.py
+recursive-include aicl *.svg
+recursive-include aicl *.txt
+recursive-exclude aicl *.pyc

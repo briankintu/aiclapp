@@ -1,0 +1,14 @@
+{
+  "name": "aicl",
+  "version": "1.0.0",
+  "description": "Web Application for AICL , intergrated with ERPNEXT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd aiclweb && yarn dev",
+    "build": "cd aiclweb && yarn build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
