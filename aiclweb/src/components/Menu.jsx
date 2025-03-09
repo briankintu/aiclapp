@@ -17,7 +17,7 @@ export default function Menu() {
                 <li className="dropdown"><Link to="#" >About</Link>
                 <ul>
                     <li><Link to="/aicl-about">About AICL</Link></li>
-                    <li><Link to="/aicl-team">Meet our Team</Link></li>
+                    {/* <li><Link to="/aicl-team">Meet our Team</Link></li> */}
                 </ul>
                    
                 </li>
